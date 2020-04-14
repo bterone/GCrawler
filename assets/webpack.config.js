@@ -41,7 +41,6 @@ module.exports = (env, options) => ({
             options: {}
           }
         ]
-
       }
     ]
   },
