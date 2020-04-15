@@ -46,4 +46,30 @@ defmodule GCrawler.Accounts do
   def change_user(%User{} = user) do
     User.changeset(user, %{})
   end
+
+  @doc """
+  Returns nil when there is no username
+
+  ## Examples
+
+    iex> get_by_username(nil)
+    nil
+
+  """
+  def get_by_username(username) when is_nil(username), do: nil
+
+  @doc """
+  Returns a user
+
+  ## Examples
+
+    iex> GCrawler.Repo.insert(%GCrawler.Accounts.User{username: "Billy123", encrypted_password: "encrypted"})
+    iex> _result = get_by_username("Billy123")
+    iex> with _result <- %GCrawler.Accounts.User{}, do: :passed
+    :passed
+
+  """
+  def get_by_username(username) do
+    Repo.get_by(User, username: username)
+  end
 end
