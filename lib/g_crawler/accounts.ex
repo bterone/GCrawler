@@ -13,11 +13,13 @@ defmodule GCrawler.Accounts do
 
   ## Examples
 
-      iex> create_user(%{field: value})
-      {:ok, %User{}}
+    iex> user = %{"username" => "Billy", "encrypted_password" => "SecretPassword@123"}
+    iex> with {:ok, %GCrawler.Accounts.User{}} <- create_user(user), do: :passed
+    :passed
 
-      iex> create_user(%{field: bad_value})
-      {:error, %Ecto.Changeset{}}
+    iex> user = %{"username" => nil, "encrypted_password" => nil}
+    iex> with {:error, %Ecto.Changeset{valid?: false}} <- create_user(user), do: :passed
+    :passed
 
   """
   def create_user(attrs \\ %{}) do
@@ -31,8 +33,10 @@ defmodule GCrawler.Accounts do
 
   ## Examples
 
-      iex> change_user(user)
-      %Ecto.Changeset{source: %User{}}
+    iex> user = %GCrawler.Accounts.User{username: "Tom", encrypted_password: "SecretPassword@123"}
+    iex> _result = change_user(user)
+    iex> with _result <- %Ecto.Changeset{data: %GCrawler.Accounts.User{username: "Tom", encrypted_password: "SecretPassword@123"}, valid?: true}, do: :passed
+    :passed
 
   """
   def change_user(%User{} = user) do
