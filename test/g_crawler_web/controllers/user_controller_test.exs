@@ -1,7 +1,7 @@
 defmodule GCrawlerWeb.UserControllerTest do
   use GCrawlerWeb.ConnCase
 
-  @create_attrs %{username: "some username", password: "Password123", password_confirmation: "Password123"}
+  @create_attrs %{username: "Billy123", password: "Password123", password_confirmation: "Password123"}
   @invalid_attrs %{encrypted_password: nil, username: nil}
 
   describe "new user" do
