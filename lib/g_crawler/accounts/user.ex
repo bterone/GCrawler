@@ -1,4 +1,8 @@
 defmodule GCrawler.Accounts.User do
+  @moduledoc """
+  Contains the schema and changeset for the User
+  """
+
   use Ecto.Schema
   import Ecto.Changeset
 
