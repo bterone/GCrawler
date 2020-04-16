@@ -7,8 +7,8 @@ defmodule GCrawler.AccountsTest do
   describe "users" do
     alias GCrawler.Accounts.User
 
-    @valid_attrs %{encrypted_password: "some encrypted_password", username: "some username"}
-    @invalid_attrs %{encrypted_password: nil, username: nil}
+    @valid_attrs %{username: "Billy123", password: "Password123", password_confirmation: "Password123"}
+    @invalid_attrs %{username: nil, password: nil, password_confirmation: nil}
 
     def user_fixture(attrs \\ %{}) do
       {:ok, user} =
@@ -21,7 +21,7 @@ defmodule GCrawler.AccountsTest do
 
     test "create_user/1 with valid data creates a user" do
       assert {:ok, %User{} = user} = Accounts.create_user(@valid_attrs)
-      assert user.username == "some username"
+      assert user.username == "Billy123"
     end
 
     test "create_user/1 with invalid data returns error changeset" do

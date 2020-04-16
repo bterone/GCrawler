@@ -13,11 +13,15 @@ defmodule GCrawler.Accounts do
 
   ## Examples
 
-    iex> user = %{"username" => "Billy", "encrypted_password" => "SecretPassword@123"}
+    iex> user = %{"username" => "Billy", "password" => "SecretPassword@123", "password_confirmation" => "SecretPassword@123"}
     iex> with {:ok, %GCrawler.Accounts.User{}} <- create_user(user), do: :passed
     :passed
 
-    iex> user = %{"username" => nil, "encrypted_password" => nil}
+    iex>  user = %{"username" => "Billy", "password" => "SecretPassword@123", "password_confirmation" => "NotMatching@123"}
+    iex> with {:error, %Ecto.Changeset{valid?: false}} <- create_user(user), do: :passed
+    :passed
+
+    iex> user = %{"username" => nil, "password" => nil}
     iex> with {:error, %Ecto.Changeset{valid?: false}} <- create_user(user), do: :passed
     :passed
 
@@ -33,9 +37,9 @@ defmodule GCrawler.Accounts do
 
   ## Examples
 
-    iex> user = %GCrawler.Accounts.User{username: "Tom", encrypted_password: "SecretPassword@123"}
+    iex> user = %GCrawler.Accounts.User{username: "Tom", password: "SecretPassword@123", password_confirmation: "SecretPassword@123"}
     iex> _result = change_user(user)
-    iex> with _result <- %Ecto.Changeset{data: %GCrawler.Accounts.User{username: "Tom", encrypted_password: "SecretPassword@123"}, valid?: true}, do: :passed
+    iex> with _result <- %Ecto.Changeset{data: %GCrawler.Accounts.User{username: "Tom", password: "SecretPassword@123", password_confirmation: "SecretPassword@123"}, valid?: true}, do: :passed
     :passed
 
   """

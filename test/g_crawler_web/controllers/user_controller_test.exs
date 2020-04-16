@@ -1,15 +1,8 @@
 defmodule GCrawlerWeb.UserControllerTest do
   use GCrawlerWeb.ConnCase
 
-  alias GCrawler.Accounts
-
-  @create_attrs %{encrypted_password: "some encrypted_password", username: "some username"}
+  @create_attrs %{username: "some username", password: "Password123", password_confirmation: "Password123"}
   @invalid_attrs %{encrypted_password: nil, username: nil}
-
-  def fixture(:user) do
-    {:ok, user} = Accounts.create_user(@create_attrs)
-    user
-  end
 
   describe "new user" do
     test "renders form", %{conn: conn} do
@@ -34,10 +27,5 @@ defmodule GCrawlerWeb.UserControllerTest do
       conn = post(conn, Routes.user_path(conn, :create), user: @invalid_attrs)
       assert html_response(conn, 200) =~ "can&#39;t be blank"
     end
-  end
-
-  defp create_user(_) do
-    user = fixture(:user)
-    {:ok, user: user}
   end
 end

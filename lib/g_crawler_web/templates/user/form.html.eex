@@ -10,8 +10,12 @@
   <%= error_tag f, :username %>
 
   <%= label f, :password %>
-  <%= password_input f, :encrypted_password %>
-  <%= error_tag f, :encrypted_password %>
+  <%= password_input f, :password %>
+  <%= error_tag f, :password %>
+
+  <%= label f, :password_confirmation %>
+  <%= password_input f, :password_confirmation %>
+  <%= error_tag f, :password_confirmation %>
 
   <div>
     <%= submit "Save" %>
