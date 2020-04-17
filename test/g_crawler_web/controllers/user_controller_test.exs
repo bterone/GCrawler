@@ -15,7 +15,6 @@ defmodule GCrawlerWeb.UserControllerTest do
     test "redirects to show when data is valid", %{conn: conn} do
       conn = post(conn, Routes.user_path(conn, :create), user: @create_attrs)
 
-      assert %{"current_user_id" => id} = get_session(conn)
       assert redirected_to(conn) == Routes.page_path(conn, :index)
 
       conn = get(conn, Routes.page_path(conn, :index))
