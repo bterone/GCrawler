@@ -2,12 +2,14 @@ defmodule GCrawlerWeb.SessionController do
   use GCrawlerWeb, :controller
 
   alias GCrawler.Accounts
+  alias GCrawler.Accounts.User
 
   def new(conn, _params) do
-    render(conn, "new.html")
+    changeset = Accounts.change_user(%User{})
+    render(conn, "new.html", changeset: changeset)
   end
 
-  def create(conn, %{"session" => auth_params}) do
+  def create(conn, %{"user" => auth_params}) do
     user = Accounts.get_by_username(auth_params["username"])
     case Bcrypt.check_pass(user, auth_params["password"]) do
       {:ok, user} ->
@@ -19,7 +21,7 @@ defmodule GCrawlerWeb.SessionController do
       {:error, _} ->
         conn
         |> put_flash(:error, "There was a problem with your username or password")
-        |> render("new.html")
+        |> redirect(to: Routes.session_path(conn, :new))
     end
   end
 
