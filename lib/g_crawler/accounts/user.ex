@@ -5,7 +5,8 @@ defmodule GCrawler.Accounts.User do
 
   use Ecto.Schema
   import Ecto.Changeset
-  require Logger
+
+  alias GCrawler.Accounts.Password
 
   schema "users" do
     field :username, :string
@@ -29,7 +30,7 @@ defmodule GCrawler.Accounts.User do
   end
 
   defp encrypt_password(%Ecto.Changeset{changes: %{ password: password }, valid?: true} = changeset) do
-    put_change(changeset, :encrypted_password, Bcrypt.hash_pwd_salt(password))
+    put_change(changeset, :encrypted_password, Password.hash_password(password))
   end
 
   defp encrypt_password(changeset), do: changeset
