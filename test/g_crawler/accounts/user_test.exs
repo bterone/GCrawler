@@ -4,19 +4,10 @@ defmodule GCrawler.Accounts.UserTest do
   alias GCrawler.Repo
   alias GCrawler.Accounts.User
 
-  @valid_attributes %{
-    username: "Billy123",
-    password: "Password123",
-    password_confirmation: "Password123"
-  }
-
-  describe "Validations" do
+  describe "changeset" do
     test "username is unique" do
-      %User{}
-      |> User.changeset(@valid_attributes)
-      |> Repo.insert()
-
-      duplicated_user = User.changeset(%User{}, @valid_attributes)
+      insert(:user, username: "Billy123")
+      duplicated_user = User.changeset(%User{}, params_for(:user, username: "Billy123"))
 
       assert {:error, changeset} = Repo.insert(duplicated_user)
 
@@ -34,7 +25,7 @@ defmodule GCrawler.Accounts.UserTest do
     end
 
     test "password has at least 6 characters" do
-      attributes = %{ @valid_attributes | password: "A", password_confirmation: "A" }
+      attributes = params_for(:user, password: "A", password_confirmation: "A")
       changeset = User.changeset(%User{}, attributes)
 
       refute changeset.valid?
@@ -42,7 +33,7 @@ defmodule GCrawler.Accounts.UserTest do
     end
 
     test "password is encrypted" do
-      attributes = %{ @valid_attributes | password: "StrongPassword123", password_confirmation: "StrongPassword123" }
+      attributes = params_for(:user, password: "StrongPassword123", password_confirmation: "StrongPassword123")
       changeset = User.changeset(%User{}, attributes)
 
       assert changeset.valid?
