@@ -1,5 +1,5 @@
 defmodule GCrawlerWeb.UserControllerTest do
-  use GCrawlerWeb.ConnCase
+  use GCrawlerWeb.ConnCase, async: true
 
   describe "new user" do
     test "renders form", %{conn: conn} do
@@ -14,16 +14,14 @@ defmodule GCrawlerWeb.UserControllerTest do
       conn = post(conn, Routes.user_path(conn, :create), user: user_attributes)
 
       assert redirected_to(conn) == Routes.page_path(conn, :index)
-
-      conn = get(conn, Routes.page_path(conn, :index))
-      assert html_response(conn, 200) =~ "User created successfully"
+      assert get_flash(conn, :info) == "User created successfully."
     end
 
     # TODO: Assert by checking the element from DOM instead of literal string
     test "renders errors when data is invalid", %{conn: conn} do
       user_attributes = params_for(:user, password: nil, password_confirmation: nil)
-
       conn = post(conn, Routes.user_path(conn, :create), user: user_attributes)
+
       assert html_response(conn, 200) =~ "can&#39;t be blank"
     end
   end

@@ -1,5 +1,5 @@
 defmodule GCrawler.Accounts.UserTest do
-  use GCrawler.DataCase
+  use GCrawler.DataCase, async: true
 
   alias GCrawler.Repo
   alias GCrawler.Accounts.User
@@ -38,7 +38,7 @@ defmodule GCrawler.Accounts.UserTest do
 
       assert changeset.valid?
       assert get_change(changeset, :encrypted_password) != "StrongPassword123"
-      assert get_change(changeset, :encrypted_password) != nil
+      assert get_change(changeset, :encrypted_password)
     end
   end
 end

@@ -3,7 +3,7 @@ defmodule GCrawler.Repo.Migrations.CreateUsers do
 
   def change do
     create table(:users) do
-      add :username, :string
+      add :username, :string, null: false
       add :encrypted_password, :string
 
       timestamps()
