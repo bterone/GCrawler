@@ -24,6 +24,8 @@ defmodule GCrawler.DataCase do
       import Ecto.Changeset
       import Ecto.Query
       import GCrawler.DataCase
+
+      import GCrawler.Factory
     end
   end
 

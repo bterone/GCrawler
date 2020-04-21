@@ -25,7 +25,7 @@ defmodule GCrawler.MixProject do
   end
 
   # Specifies which paths to compile per environment.
-  defp elixirc_paths(:test), do: ["lib", "test/support"]
+  defp elixirc_paths(:test), do: ["lib", "test/support", "test/factories"]
   defp elixirc_paths(_), do: ["lib"]
 
   # Specifies your project dependencies.
@@ -33,16 +33,20 @@ defmodule GCrawler.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:bcrypt_elixir, "~> 2.2"},
+      {:credo, "~> 1.3", only: [:dev, :test], runtime: false},
+      {:ecto_sql, "~> 3.1"},
+      {:ex_machina, "~> 2.4"},
+      {:faker, "~> 0.13.0", only: :test},
+      {:gettext, "~> 0.11"},
+      {:jason, "~> 1.0"},
       {:phoenix, "~> 1.4.16"},
       {:phoenix_pubsub, "~> 1.1"},
       {:phoenix_ecto, "~> 4.0"},
-      {:ecto_sql, "~> 3.1"},
-      {:postgrex, ">= 0.0.0"},
       {:phoenix_html, "~> 2.11"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
-      {:gettext, "~> 0.11"},
-      {:jason, "~> 1.0"},
-      {:plug_cowboy, "~> 2.0"}
+      {:plug_cowboy, "~> 2.0"},
+      {:postgrex, ">= 0.0.0"}
     ]
   end
 
