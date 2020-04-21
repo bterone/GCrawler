@@ -35,14 +35,15 @@ defmodule GCrawler.AccountsTest do
 
       assert %Ecto.Changeset{} = Accounts.change_user(user_attributes)
     end
+  end
 
+  describe "get_by_username/1" do
     test "get_by_username/1 with nil returns nil" do
       assert Accounts.get_by_username(nil) == nil
     end
 
     test "get_by_username with valid data returns a user" do
-      attributes = %{@valid_attrs | username: "Thomas123"}
-      {:ok, %User{}} = Accounts.create_user(attributes)
+      insert(:user, username: "Thomas123")
 
       assert %User{username: "Thomas123"} = Accounts.get_by_username("Thomas123")
     end

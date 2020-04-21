@@ -25,6 +25,7 @@ defmodule GCrawler.DataCase do
       import Ecto.Query
       import GCrawler.DataCase
 
+      # Factories
       import GCrawler.Factory
     end
   end

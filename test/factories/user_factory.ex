@@ -18,6 +18,17 @@ defmodule GCrawler.UserFactory do
 
         merge_attributes(user, attrs)
       end
+
+      def user_sign_in_factory(attrs) do
+        password = attrs[:password] || Faker.Util.format("%6b%3d")
+
+        user = %User{
+          username: Faker.Name.name(),
+          password: password
+        }
+
+        merge_attributes(user, attrs)
+      end
     end
   end
 end
