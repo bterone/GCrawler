@@ -3,6 +3,7 @@ defmodule GCrawlerWeb.SessionController do
 
   alias GCrawler.Accounts
   alias GCrawler.Accounts.User
+  alias GCrawler.Accounts.Password
 
   def new(conn, _params) do
     changeset = Accounts.change_user(%User{})
@@ -11,7 +12,7 @@ defmodule GCrawlerWeb.SessionController do
 
   def create(conn, %{"user" => auth_params}) do
     user = Accounts.get_by_username(auth_params["username"])
-    case Bcrypt.check_pass(user, auth_params["password"]) do
+    case Password.check_password(user, auth_params["password"]) do
       {:ok, user} ->
         conn
         |> put_session(:current_user_id, user.id)

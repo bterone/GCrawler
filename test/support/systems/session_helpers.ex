@@ -1,4 +1,8 @@
 defmodule GCrawler.SessionHelpers do
+  @moduledoc """
+  Contains helper functions to aid with the creation of user sessions for testing purposes
+  """
+
   alias Plug.Conn
   import GCrawler.Factory
 

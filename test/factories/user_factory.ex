@@ -1,4 +1,7 @@
 defmodule GCrawler.UserFactory do
+  @moduledoc """
+  Factory for generating mock users
+  """
 
   alias GCrawler.Accounts.User
 

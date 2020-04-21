@@ -29,7 +29,7 @@ defmodule GCrawler.Accounts.User do
     |> encrypt_password
   end
 
-  defp encrypt_password(%Ecto.Changeset{changes: %{ password: password }, valid?: true} = changeset) do
+  defp encrypt_password(%Ecto.Changeset{changes: %{password: password}, valid?: true} = changeset) do
     put_change(changeset, :encrypted_password, Password.hash_password(password))
   end
 
