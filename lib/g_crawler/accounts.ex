@@ -72,4 +72,8 @@ defmodule GCrawler.Accounts do
   def get_by_username(username) do
     Repo.get_by(User, username: username)
   end
+
+  def get_by_user_id(user_id) do
+    Repo.get_by(User, id: user_id)
+  end
 end
