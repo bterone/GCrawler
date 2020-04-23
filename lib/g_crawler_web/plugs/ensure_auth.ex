@@ -7,6 +7,8 @@ defmodule GCrawlerWeb.Plugs.EnsureAuth do
   import Phoenix.Controller
   import GCrawlerWeb.Gettext
 
+  alias GCrawlerWeb.Router.Helpers, as: Routes
+
   def init(_options), do: nil
 
   def call(conn, _options) do
@@ -15,7 +17,7 @@ defmodule GCrawlerWeb.Plugs.EnsureAuth do
     else
       conn
       |> put_flash(:error, gettext "You need to sign in or sign up before continuing.")
-      |> redirect(to: GCrawlerWeb.Router.Helpers.session_path(conn, :new))
+      |> redirect(to: Routes.session_path(conn, :new))
       |> halt()
     end
   end

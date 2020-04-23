@@ -73,6 +73,17 @@ defmodule GCrawler.Accounts do
     Repo.get_by(User, username: username)
   end
 
+  @doc """
+  Returns a user
+
+  ## Examples
+
+    iex> GCrawler.Repo.insert(%GCrawler.Accounts.User{id: 1, username: "Billy123", encrypted_password: "encrypted"})
+    iex> _result = get_by_user_id(1)
+    iex> with _result <- %GCrawler.Accounts.User{}, do: :passed
+    :passed
+
+  """
   def get_by_user_id(user_id) do
     Repo.get_by(User, id: user_id)
   end

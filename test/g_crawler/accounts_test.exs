@@ -38,14 +38,22 @@ defmodule GCrawler.AccountsTest do
   end
 
   describe "get_by_username/1" do
-    test "get_by_username/1 with nil returns nil" do
+    test "with nil returns nil" do
       assert Accounts.get_by_username(nil) == nil
     end
 
-    test "get_by_username with valid data returns a user" do
+    test "with valid data returns a user" do
       insert(:user, username: "Thomas123")
 
       assert %User{username: "Thomas123"} = Accounts.get_by_username("Thomas123")
+    end
+  end
+
+  describe "get_by_user_id/1" do
+    test "with valid data returns a user" do
+      insert(:user, id: 1, username: "Thomas123")
+
+      assert %User{id: 1, username: "Thomas123"} = Accounts.get_by_user_id(1)
     end
   end
 end
