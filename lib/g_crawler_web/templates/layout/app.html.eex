@@ -14,6 +14,7 @@
         <nav role="navigation">
           <ul>
             <%= if @conn.assigns.user_signed_in? do %>
+              <li><%= link "Dashboard", to: Routes.dashboard_path(@conn, :show) %></li>
               <li><%= link "Sign out", to: Routes.session_path(@conn, :delete), method: :delete %></li>
             <% else %>
               <li><%= link "Sign in", to: Routes.session_path(@conn, :new) %></li>
@@ -22,7 +23,7 @@
           </ul>
         </nav>
         <a href="/" class="phx-logo">
-          <img src="<%= Routes.static_path(@conn, "/images/phoenix.png") %>" alt="Phoenix Framework Logo"/>
+          <img src="<%= Routes.static_path(@conn, "/images/logo.png") %>" alt="GCrawler Logo"/>
         </a>
       </section>
     </header>
