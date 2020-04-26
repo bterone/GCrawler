@@ -11,8 +11,9 @@ defmodule GCrawlerWeb.UserController do
 
   def create(conn, %{"user" => user_params}) do
     case Accounts.create_user(user_params) do
-      {:ok, _user} ->
+      {:ok, user} ->
         conn
+        |> put_session(:current_user_id, user.id)
         |> put_flash(:info, gettext "User created successfully.")
         |> redirect(to: Routes.page_path(conn, :index))
 

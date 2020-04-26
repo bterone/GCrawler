@@ -13,6 +13,7 @@ defmodule GCrawlerWeb.UserControllerTest do
       user_attributes = params_for(:user, username: "Billy123", password: "Password123", password_confirmation: "Password123")
       conn = post(conn, Routes.user_path(conn, :create), user: user_attributes)
 
+      assert %{"current_user_id" => id} = get_session(conn)
       assert redirected_to(conn) == Routes.page_path(conn, :index)
       assert get_flash(conn, :info) == "User created successfully."
     end

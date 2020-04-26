@@ -19,3 +19,8 @@ msgstr ""
 #: lib/g_crawler_web/controllers/user_controller.ex:17
 msgid "User created successfully."
 msgstr ""
+
+#, elixir-format
+#: lib/g_crawler_web/plugs/ensure_auth.ex:17
+msgid "You need to sign in or sign up before continuing."
+msgstr ""

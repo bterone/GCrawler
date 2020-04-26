@@ -1,4 +1,7 @@
 defmodule GCrawler.UserFactory do
+  @moduledoc """
+  Factory for generating mock users
+  """
 
   alias GCrawler.Accounts.User
 
@@ -14,6 +17,17 @@ defmodule GCrawler.UserFactory do
           password: password,
           password_confirmation: password,
           encrypted_password: Password.hash_password(password)
+        }
+
+        merge_attributes(user, attrs)
+      end
+
+      def user_sign_in_factory(attrs) do
+        password = attrs[:password] || Faker.Util.format("%6b%3d")
+
+        user = %User{
+          username: Faker.Name.name(),
+          password: password
         }
 
         merge_attributes(user, attrs)

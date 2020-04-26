@@ -23,6 +23,10 @@ defmodule GCrawlerWeb.ConnCase do
       use Phoenix.ConnTest
       alias GCrawlerWeb.Router.Helpers, as: Routes
 
+      # Helpers
+      import GCrawler.SessionHelpers
+
+      # Factories
       import GCrawler.Factory
 
       # The default endpoint for testing
