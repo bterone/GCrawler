@@ -1,0 +1,48 @@
+<h1>Show Query result</h1>
+
+<ul>
+
+  <li>
+    <strong>Number of top advertisers:</strong>
+    <%= @query_result.number_of_top_advertisers %>
+  </li>
+
+  <li>
+    <strong>Total number of advertisers:</strong>
+    <%= @query_result.total_number_of_advertisers %>
+  </li>
+
+  <li>
+    <strong>Top advertiser urls:</strong>
+    <%= @query_result.top_advertiser_urls %>
+  </li>
+
+  <li>
+    <strong>Number of results on page:</strong>
+    <%= @query_result.number_of_results_on_page %>
+  </li>
+
+  <li>
+    <strong>Url results on page:</strong>
+    <%= @query_result.url_results_on_page %>
+  </li>
+
+  <li>
+    <strong>Number of urls:</strong>
+    <%= @query_result.number_of_urls %>
+  </li>
+
+  <li>
+    <strong>Html cache:</strong>
+    <%= @query_result.html_cache %>
+  </li>
+
+  <li>
+    <strong>Total number of results:</strong>
+    <%= @query_result.total_number_of_results %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.query_result_path(@conn, :edit, @query_result) %></span>
+<span><%= link "Back", to: Routes.query_result_path(@conn, :index) %></span>
