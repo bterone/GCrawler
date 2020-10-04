@@ -12,12 +12,13 @@ defmodule GCrawlerWeb.SessionController do
 
   def create(conn, %{"user" => auth_params}) do
     user = Accounts.get_by_username(auth_params["username"])
+
     case Password.check_password(user, auth_params["password"]) do
       {:ok, user} ->
         conn
         |> put_session(:current_user_id, user.id)
         |> put_flash(:info, "Signed in successfully!")
-        |> redirect(to: Routes.page_path(conn, :index))
+        |> redirect(to: Routes.dashboard_path(conn, :show))
 
       {:error, _} ->
         conn

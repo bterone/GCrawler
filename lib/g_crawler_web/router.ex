@@ -31,6 +31,8 @@ defmodule GCrawlerWeb.Router do
 
   scope "/", GCrawlerWeb do
     pipe_through [:browser, :authentication]
+
+    get "/dashboard", DashboardController, :show
   end
 
   # Other scopes may use custom stacks.

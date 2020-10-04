@@ -10,7 +10,13 @@ defmodule GCrawlerWeb.UserControllerTest do
 
   describe "create user" do
     test "redirects to show when data is valid", %{conn: conn} do
-      user_attributes = params_for(:user, username: "Billy123", password: "Password123", password_confirmation: "Password123")
+      user_attributes =
+        params_for(:user,
+          username: "Billy123",
+          password: "Password123",
+          password_confirmation: "Password123"
+        )
+
       conn = post(conn, Routes.user_path(conn, :create), user: user_attributes)
 
       assert %{"current_user_id" => id} = get_session(conn)

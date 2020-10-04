@@ -14,7 +14,7 @@ defmodule GCrawlerWeb.UserController do
       {:ok, user} ->
         conn
         |> put_session(:current_user_id, user.id)
-        |> put_flash(:info, gettext "User created successfully.")
+        |> put_flash(:info, gettext("User created successfully."))
         |> redirect(to: Routes.page_path(conn, :index))
 
       {:error, %Ecto.Changeset{} = changeset} ->
