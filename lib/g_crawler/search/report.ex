@@ -7,7 +7,7 @@ defmodule GCrawler.Search.Report do
 
     field :csv_path, :string, virtual: true
 
-    many_to_many :query_results, GCrawler.Search.SearchQueue, join_through: "query_results"
+    many_to_many :query_results, GCrawler.QueryManager.SearchQueue, join_through: "query_results"
 
     timestamps()
   end

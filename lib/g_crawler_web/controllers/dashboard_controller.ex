@@ -5,7 +5,7 @@ defmodule GCrawlerWeb.DashboardController do
   alias GCrawler.Accounts.User
 
   def create(conn, %{"user" => user_params}) do
-    IO.inspect user_params
+    IO.inspect(user_params)
   end
 
   def show(conn, _params) do
