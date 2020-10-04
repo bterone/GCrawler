@@ -33,6 +33,8 @@ defmodule GCrawlerWeb.Router do
     pipe_through [:browser, :authentication]
 
     get "/dashboard", DashboardController, :show
+    post "/dashboard", DashbaordController, :create
+    resources "/reports", ReportController
   end
 
   # Other scopes may use custom stacks.

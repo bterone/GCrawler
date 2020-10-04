@@ -1,0 +1,40 @@
+<h1>Listing Query results</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Number of top advertisers</th>
+      <th>Total number of advertisers</th>
+      <th>Top advertiser urls</th>
+      <th>Number of results on page</th>
+      <th>Url results on page</th>
+      <th>Number of urls</th>
+      <th>Html cache</th>
+      <th>Total number of results</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for query_result <- @query_results do %>
+    <tr>
+      <td><%= query_result.number_of_top_advertisers %></td>
+      <td><%= query_result.total_number_of_advertisers %></td>
+      <td><%= query_result.top_advertiser_urls %></td>
+      <td><%= query_result.number_of_results_on_page %></td>
+      <td><%= query_result.url_results_on_page %></td>
+      <td><%= query_result.number_of_urls %></td>
+      <td><%= query_result.html_cache %></td>
+      <td><%= query_result.total_number_of_results %></td>
+
+      <td>
+        <span><%= link "Show", to: Routes.query_result_path(@conn, :show, query_result) %></span>
+        <span><%= link "Edit", to: Routes.query_result_path(@conn, :edit, query_result) %></span>
+        <span><%= link "Delete", to: Routes.query_result_path(@conn, :delete, query_result), method: :delete, data: [confirm: "Are you sure?"] %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Query result", to: Routes.query_result_path(@conn, :new) %></span>

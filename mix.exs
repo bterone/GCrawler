@@ -40,6 +40,7 @@ defmodule GCrawler.MixProject do
       {:faker, "~> 0.13.0", only: :test},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
+      {:nimble_csv, "~> 0.7"},
       {:phoenix, "~> 1.4.16"},
       {:phoenix_pubsub, "~> 1.1"},
       {:phoenix_ecto, "~> 4.0"},

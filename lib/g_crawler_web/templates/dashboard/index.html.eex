@@ -1,4 +1,5 @@
 <section class="phx-hero">
   <h1><%= gettext "This is the dashboard screen" %></h1>
   <p>A male duck is called a drake, a female duck a hen, and a baby duck a duckling. 🦆 🦆 🦆</p>
+  <%= link "Upload Report", to: Routes.report_path(@conn, :new) %>
 </section>
