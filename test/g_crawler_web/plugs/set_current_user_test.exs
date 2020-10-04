@@ -4,6 +4,7 @@ defmodule GCrawlerWeb.Plugs.SetCurrentUserTest do
 
   test "set the current user if User ID is valid", %{conn: conn} do
     user = insert(:user, username: "Billy123")
+
     conn =
       conn
       |> sign_in(user)

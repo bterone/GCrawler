@@ -12,6 +12,7 @@ defmodule GCrawlerWeb.SessionController do
 
   def create(conn, %{"user" => auth_params}) do
     user = Accounts.get_by_username(auth_params["username"])
+
     case Password.check_password(user, auth_params["password"]) do
       {:ok, user} ->
         conn

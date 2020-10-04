@@ -11,7 +11,11 @@ defmodule GCrawlerWeb.SessionControllerTest do
   describe "create session" do
     test "redirects to user dashboard when data is valid", %{conn: conn} do
       user = insert(:user)
-      conn = post(conn, Routes.session_path(conn, :create), user: %{username: user.username, password: user.password})
+
+      conn =
+        post(conn, Routes.session_path(conn, :create),
+          user: %{username: user.username, password: user.password}
+        )
 
       assert %{"current_user_id" => id} = get_session(conn)
       assert redirected_to(conn) == Routes.dashboard_path(conn, :show)

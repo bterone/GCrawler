@@ -33,7 +33,12 @@ defmodule GCrawler.Accounts.UserTest do
     end
 
     test "password is encrypted" do
-      attributes = params_for(:user, password: "StrongPassword123", password_confirmation: "StrongPassword123")
+      attributes =
+        params_for(:user,
+          password: "StrongPassword123",
+          password_confirmation: "StrongPassword123"
+        )
+
       changeset = User.changeset(%User{}, attributes)
 
       assert changeset.valid?
